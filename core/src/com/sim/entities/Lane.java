@@ -52,28 +52,28 @@ public class Lane extends RectangleShape {
                     vehicle.setAngle(180);
                     vehicle.setX(x+ SimConfig.CARRI_LANE_SPACE);
                     vehicle.setY(y);
-                    vehicle.setSpeedInKM(0f, 30f);
+                    //vehicle.setSpeedInKM(0f, 30f);
                     break;
                 case DOWN:
                     // Carriquiry North Spawn
                     vehicle.setAngle(0);
                     vehicle.setX(x+ SimConfig.CARRI_LANE_SPACE);
                     vehicle.setY(height);
-                    vehicle.setSpeedInKM(0f, -30f);
+                    //vehicle.setSpeedInKM(0f, -30f);
                     break;
                 case LEFT:
                     // Moreyra East Spawn
                     vehicle.setAngle(-90);
                     vehicle.setX(width);
-                    vehicle.setY(y + SimConfig.MOREY_LANE_SPACE*3);
-                    vehicle.setSpeedInKM(-30f, 0f);
+                    vehicle.setY(y+SimConfig.MOREY_LANE_SPACE+vehicle.getWidth()/2);
+                    //vehicle.setSpeedInKM(-30f, 0f);
                     break;
                 case RIGHT:
                     // Moreyra West Spawn
                     vehicle.setAngle(90);
                     vehicle.setX(x);
-                    vehicle.setY(y + vehicle.getWidth()/2);
-                    vehicle.setSpeedInKM(30f, 0f);
+                    vehicle.setY(y+SimConfig.MOREY_LANE_SPACE+vehicle.getWidth()/2);
+                    //vehicle.setSpeedInKM(30f, 0f);
                     break;
             }
 

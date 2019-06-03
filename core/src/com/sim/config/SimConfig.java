@@ -13,8 +13,8 @@ public class SimConfig {
     public static final float MOREY_EAST_SIDE = 68.0f;
     public static final float HORIZONTAL_INTERSECTION = 23.0f;
     public static final float VERTICAL_INTERSECTION = 20.0f;
-    public static final float SEPARATION_VER_INT = 0.8f;
-    public static final float SEPARATION_HOR_INT = 4.0f;
+    public static final float SEPARATION_VER_INT = VERTICAL_INTERSECTION-MOREY_LANE_WIDTH*6;
+    public static final float SEPARATION_HOR_INT = HORIZONTAL_INTERSECTION-CARRI_LANE_WIDTH*4;
     public static final float WORLD_WIDTH = MOREY_WEST_SIDE + HORIZONTAL_INTERSECTION + MOREY_EAST_SIDE;
     public static final float WORLD_HEIGHT = CARRI_NORTH_SIDE + VERTICAL_INTERSECTION + CARRI_SOUTH_SIDE;
     public static final float AVERAGE_VEHICLE_HEIGHT = 3f;

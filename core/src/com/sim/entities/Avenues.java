@@ -21,6 +21,7 @@ public class Avenues {
     private Lane moreyraWright;
     private Array<Lane> Carriqury;
     private Array<Lane> Moreyra;
+    private RectangleShape intersection;
 
     public Avenues() {
         init();
@@ -28,6 +29,9 @@ public class Avenues {
 
     public void init() {
 
+        intersection = new RectangleShape(SimConfig.VERTICAL_INTERSECTION, SimConfig.HORIZONTAL_INTERSECTION);
+        intersection.setX(SimConfig.MOREY_WEST_SIDE);
+        intersection.setY(SimConfig.CARRI_SOUTH_SIDE);
         Carriqury = new Array<Lane>();
         Moreyra = new Array<Lane>();
 
@@ -83,6 +87,7 @@ public class Avenues {
         for (Lane lane : Moreyra) {
             lane.drawDebug(renderer);
         }
+        intersection.drawDebug(renderer);
     }
 
     public void drawVehicles(ShapeRenderer renderer) {
