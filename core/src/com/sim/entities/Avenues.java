@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.sim.config.SimConfig;
+import com.sim.util.Direction;
 import sun.security.ssl.Debug;
 
 public class Avenues {
@@ -32,34 +33,34 @@ public class Avenues {
 
         carriquirySright = new Lane(
                 SimConfig.WORLD_HEIGHT, SimConfig.CARRI_LANE_WIDTH,
-                SimConfig.MOREY_EAST_SIDE, 0);
+                SimConfig.MOREY_WEST_SIDE, 0, Direction.DOWN);
         carriquirySleft = new Lane(
                 SimConfig.WORLD_HEIGHT, SimConfig.CARRI_LANE_WIDTH,
-                SimConfig.MOREY_EAST_SIDE + SimConfig.CARRI_LANE_WIDTH, 0);
+                SimConfig.MOREY_WEST_SIDE + SimConfig.CARRI_LANE_WIDTH, 0, Direction.DOWN);
         carriquiryNright = new Lane(
                 SimConfig.WORLD_HEIGHT, SimConfig.CARRI_LANE_WIDTH,
-                SimConfig.MOREY_EAST_SIDE + SimConfig.CARRI_LANE_WIDTH + SimConfig.SEPARATION_HOR_INT, 0);
+                SimConfig.MOREY_WEST_SIDE + SimConfig.CARRI_LANE_WIDTH * 2 + SimConfig.SEPARATION_HOR_INT, 0, Direction.UP);
         carriquiryNleft = new Lane(
                 SimConfig.WORLD_HEIGHT, SimConfig.CARRI_LANE_WIDTH,
-                SimConfig.MOREY_EAST_SIDE + SimConfig.CARRI_LANE_WIDTH * 2 + SimConfig.SEPARATION_HOR_INT, 0);
+                SimConfig.MOREY_WEST_SIDE + SimConfig.CARRI_LANE_WIDTH * 3 + SimConfig.SEPARATION_HOR_INT, 0, Direction.UP);
         moreyraEleft = new Lane(
                 SimConfig.MOREY_LANE_WIDTH, SimConfig.WORLD_WIDTH,
-                0, SimConfig.CARRI_SOUTH_SIDE);
+                0, SimConfig.CARRI_SOUTH_SIDE, Direction.RIGHT);
         moreyraEmiddle = new Lane(
                 SimConfig.MOREY_LANE_WIDTH, SimConfig.WORLD_WIDTH,
-                0, SimConfig.CARRI_SOUTH_SIDE + SimConfig.MOREY_LANE_WIDTH);
+                0, SimConfig.CARRI_SOUTH_SIDE + SimConfig.MOREY_LANE_WIDTH, Direction.RIGHT);
         moreyraEright = new Lane(
                 SimConfig.MOREY_LANE_WIDTH, SimConfig.WORLD_WIDTH,
-                0, SimConfig.CARRI_SOUTH_SIDE + SimConfig.MOREY_LANE_WIDTH * 2);
+                0, SimConfig.CARRI_SOUTH_SIDE + SimConfig.MOREY_LANE_WIDTH * 2, Direction.RIGHT);
         moreyraWleft = new Lane(
                 SimConfig.MOREY_LANE_WIDTH, SimConfig.WORLD_WIDTH,
-                0, SimConfig.CARRI_SOUTH_SIDE + SimConfig.MOREY_LANE_WIDTH * 2 + SimConfig.SEPARATION_VER_INT);
+                0, SimConfig.CARRI_SOUTH_SIDE + SimConfig.MOREY_LANE_WIDTH * 3 + SimConfig.SEPARATION_VER_INT, Direction.LEFT);
         moreyraWmiddle = new Lane(
                 SimConfig.MOREY_LANE_WIDTH, SimConfig.WORLD_WIDTH,
-                0, SimConfig.CARRI_SOUTH_SIDE + SimConfig.MOREY_LANE_WIDTH * 3 + SimConfig.SEPARATION_VER_INT);
+                0, SimConfig.CARRI_SOUTH_SIDE + SimConfig.MOREY_LANE_WIDTH * 4 + SimConfig.SEPARATION_VER_INT, Direction.LEFT);
         moreyraWright = new Lane(
                 SimConfig.MOREY_LANE_WIDTH, SimConfig.WORLD_WIDTH,
-                0, SimConfig.CARRI_SOUTH_SIDE + SimConfig.MOREY_LANE_WIDTH * 4 + SimConfig.SEPARATION_VER_INT);
+                0, SimConfig.CARRI_SOUTH_SIDE + SimConfig.MOREY_LANE_WIDTH * 5 + SimConfig.SEPARATION_VER_INT, Direction.LEFT);
 
         Carriqury.add(carriquiryNleft);
         Carriqury.add(carriquiryNright);
@@ -73,32 +74,36 @@ public class Avenues {
         Moreyra.add(moreyraWright);
     }
 
-    public void drawDebug(ShapeRenderer renderer) {
+    public void drawLanes(ShapeRenderer renderer) {
 
-        for (Lane lane : Carriqury){
+        for (Lane lane : Carriqury) {
             lane.drawDebug(renderer);
+
         }
-        for (Lane lane : Moreyra){
+        for (Lane lane : Moreyra) {
             lane.drawDebug(renderer);
         }
     }
 
     public void drawVehicles(ShapeRenderer renderer) {
-//        for (Lane lane : Carriqury) for (Vehicle vehicle : lane.getVehicles()) vehicle.drawDebug(renderer);
-//        for (Lane lane : Moreyra) for (Vehicle vehicle : lane.getVehicles()) vehicle.drawDebug(renderer);
+        for (Lane lane : Carriqury) {
+            for (Vehicle vehicle : lane.getVehicles()) {
+                vehicle.drawDebug(renderer);
+            }
+        }
+        for (Lane lane : Moreyra) {
+            for (Vehicle vehicle : lane.getVehicles()) {
+                vehicle.drawDebug(renderer);
+            }
+        }
     }
 
     public void update(float delta) {
-//        for (Lane lane : Carriqury) {
-//            lane.updateVehicles(delta);
-//        }
-//        for (Lane lane : Moreyra) {
-//            lane.updateVehicles(delta);
-//        }
+        for (Lane lane : Carriqury) {
+            lane.updateVehicles(delta);
+        }
+        for (Lane lane : Moreyra) {
+            lane.updateVehicles(delta);
+        }
     }
-
-    public Lane getCarriquirySright(){
-        return carriquirySright;
-    }
-
 }

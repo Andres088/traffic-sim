@@ -14,17 +14,18 @@ public class Lane extends RectangleShape {
     private Pool<Vehicle> vehiclePool;
     Direction vehiclesDirection;
 
-    public Lane(float height, float width, float x, float y){
+    public Lane(float height, float width, float x, float y, Direction direction){
         super(height, width);
         this.x = x;
         this.y = y;
         vehicleSpawnTime = 3f; // Modificar
-        //init();
+        vehiclesDirection =  direction;
+        init();
     }
 
     private void init(){
         vehicles = new Array<Vehicle>();
-        vehicleTimer = 0;
+        vehicleTimer = 3f;
         vehiclePool = Pools.get(Vehicle.class, SimConfig.LANE_CAPACITY);
         createNewVehicle(3f);
     }
@@ -34,8 +35,8 @@ public class Lane extends RectangleShape {
             vehicle.update();
         }
 
-        createNewVehicle(delta);
-        removePassedVehicles();
+//        createNewVehicle(delta);
+//        removePassedVehicles();
     }
 
     public void createNewVehicle(float delta){
@@ -48,31 +49,35 @@ public class Lane extends RectangleShape {
             switch(vehiclesDirection) {
                 case UP:
                     // Carriquiry South Spawn
-                    vehicle.setAngle(0);
-                    vehicle.setX(x);
+                    vehicle.setAngle(180);
+                    vehicle.setX(x+ SimConfig.CARRI_LANE_SPACE);
                     vehicle.setY(y);
+                    vehicle.setSpeedInKM(0f, 30f);
                     break;
                 case DOWN:
                     // Carriquiry North Spawn
-                    vehicle.setAngle(180);
-                    vehicle.setX(x);
+                    vehicle.setAngle(0);
+                    vehicle.setX(x+ SimConfig.CARRI_LANE_SPACE);
                     vehicle.setY(height);
+                    vehicle.setSpeedInKM(0f, -30f);
                     break;
                 case LEFT:
-                    // Moreyra Left Spawn
-                    vehicle.setAngle(45);
-                    vehicle.setX(x);
-                    vehicle.setY(y);
+                    // Moreyra East Spawn
+                    vehicle.setAngle(-90);
+                    vehicle.setX(width);
+                    vehicle.setY(y + SimConfig.MOREY_LANE_SPACE*3);
+                    vehicle.setSpeedInKM(-30f, 0f);
                     break;
                 case RIGHT:
-                    // Moreyra East Spawn
-                    vehicle.setAngle(-45);
-                    vehicle.setX(width);
-                    vehicle.setY(y);
+                    // Moreyra West Spawn
+                    vehicle.setAngle(90);
+                    vehicle.setX(x);
+                    vehicle.setY(y + vehicle.getWidth()/2);
+                    vehicle.setSpeedInKM(30f, 0f);
                     break;
             }
 
-            vehicle.setSpeedInKM(0f, 30f); // modificar en base a angulo
+            // vehicle.setSpeedInKM(0f, 30f); // modificar en base a angulo
             vehicles.add(vehicle);
             vehicleTimer = 0f;
         }

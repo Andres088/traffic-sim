@@ -31,20 +31,16 @@ public class SimRenderer implements Disposable {
 
     public void render(float delta){
         Utils.clearScreen();
-        renderDebug();
 
-    }
-
-    private void renderDebug(){
         renderer.setProjectionMatrix(camera.combined);
         viewport.apply();
         Avenues avenues = controller.getAvenues();
-        // Rend Streets
-        avenues.drawDebug(renderer);
 
-        avenues.getCarriquirySright().drawDebug(renderer);
-        // Rend vehicles
-        //avenues.drawVehicles(renderer);
+        // Rend Lanes
+        avenues.drawLanes(renderer);
+
+        // Rend Vehicles
+        avenues.drawVehicles(renderer);
     }
 
     public void resize(int width, int height) {

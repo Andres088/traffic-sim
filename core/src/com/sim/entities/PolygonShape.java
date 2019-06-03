@@ -9,6 +9,11 @@ public class PolygonShape extends BaseShape{
 
     public Polygon polygon;
     public float angle;
+    public float originX;
+    public float originY;
+    public float rearX;
+    public float rearY;
+
 
     public PolygonShape(float height, float width) {
         super(height,width);
@@ -21,11 +26,13 @@ public class PolygonShape extends BaseShape{
     }
 
     public void drawDebug(ShapeRenderer renderer) {
+
         renderer.begin(ShapeRenderer.ShapeType.Line);
-        renderer.x(x, y, 0.1f);
         renderer.setColor(Color.WHITE);
-        polygon.setRotation(angle);
+        renderer.x(originX, originY, 0.3f);
         renderer.polygon(polygon.getTransformedVertices());
+        renderer.setColor(Color.GREEN);
+        renderer.x(rearX, rearY, 0.3f);
         renderer.end();
     }
 
@@ -46,7 +53,32 @@ public class PolygonShape extends BaseShape{
     }
 
     public void updateBounds() {
-        polygon.setPosition(x-width/2, y);
+        polygon.setPosition(x, y);
         polygon.setRotation(angle);
+
+        if (angle== 0f){ // DOWN
+            originX = x+width/2;
+            originY = y;
+            rearX =  x+width/2;
+            rearY = y+height;
+        }
+        if (angle== 180f){ // UP
+            originX = x+width/2;
+            originY = y;
+            rearX =  x+width/2;
+            rearY = y-height;
+        }
+        if (angle== 90f){ // RIGHT
+            originX = x+width/2;
+            originY = y;
+            rearX =  x-width;
+            rearY = y;
+        }
+        if (angle== -90f){ // LEFT
+            originX = x+width/2;
+            originY = y;
+            rearX =  x+2*width;
+            rearY = y;
+        }
     }
 }

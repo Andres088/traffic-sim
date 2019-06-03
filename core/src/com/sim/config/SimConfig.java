@@ -19,6 +19,9 @@ public class SimConfig {
     public static final float WORLD_HEIGHT = CARRI_NORTH_SIDE + VERTICAL_INTERSECTION + CARRI_SOUTH_SIDE;
     public static final float AVERAGE_VEHICLE_HEIGHT = 3f;
     public static final float AVERAGE_VEHICLE_WIDTH = 2f;
+    public static final float CARRI_LANE_SPACE = (CARRI_LANE_WIDTH-AVERAGE_VEHICLE_WIDTH)/2f;
+    public static final float MOREY_LANE_SPACE = (MOREY_LANE_WIDTH-AVERAGE_VEHICLE_WIDTH)/2f;
+
 
     // Pixels
     public static final float WIDTH = WORLD_WIDTH * PIXELS_PER_METER;

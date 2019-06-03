@@ -18,18 +18,9 @@ public class RectangleShape extends BaseShape{
         renderer.setColor(Color.DARK_GRAY);
         renderer.rect(x,y,width,height);
         renderer.end();
+        renderer.begin(ShapeRenderer.ShapeType.Line);
+        renderer.setColor(Color.WHITE);
+        renderer.rect(x,y,width,height);
+        renderer.end();
     }
-
-    public void adjustPosition(){
-        x = x - width/2;
-    }
-
-    public void DebugPrintShape(){
-        System.out.println("Drawing a rectangle");
-        System.out.println(x);
-        System.out.println(y);
-        System.out.println(width);
-        System.out.println(height);
-    }
-
 }
