@@ -35,4 +35,9 @@ public class PolygonShape extends BaseShape{
         renderer.x(rearX, rearY, 0.3f);
         renderer.end();
     }
+
+    public Rectangle getBounds(){
+        Rectangle rectangle = new Rectangle(x,y,width,height);
+        return rectangle;
+    }
 }

@@ -8,8 +8,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.sim.config.SimConfig;
 import com.sim.entities.Avenues;
 import com.sim.util.Utils;
-import com.sim.entities.Vehicle;
-import com.sim.entities.Lane;
 
 public class SimRenderer implements Disposable {
 
@@ -38,6 +36,12 @@ public class SimRenderer implements Disposable {
 
         // Rend Lanes
         avenues.drawLanes(renderer);
+
+        // Rend Destinations
+        avenues.drawDestinations(renderer);
+
+        // Draw Traffic Lights
+        avenues.drawTrafficLights(renderer);
 
         // Rend Vehicles
         avenues.drawVehicles(renderer);

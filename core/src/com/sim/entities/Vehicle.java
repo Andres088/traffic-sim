@@ -7,6 +7,7 @@ public class Vehicle extends PolygonShape {
 
     private float ySpeed;
     private float xSpeed;
+    private float lightPosition;
 
     public Vehicle(){
         super(SimConfig.AVERAGE_VEHICLE_HEIGHT, SimConfig.AVERAGE_VEHICLE_WIDTH);
@@ -48,28 +49,31 @@ public class Vehicle extends PolygonShape {
             originY = y;
             rearX =  x+width/2;
             rearY = y+height;
-            setSpeedInKM(0f, -30f);
+            setSpeedInKM(0f, -SimConfig.AVERAGE_VEHICLE_SPEED);
         }
         if (angle== 180f){ // UP
             originX = x+width/2;
             originY = y;
             rearX =  x+width/2;
             rearY = y-height;
-            setSpeedInKM(0f, 30f);
+            setSpeedInKM(0f, SimConfig.AVERAGE_VEHICLE_SPEED);
         }
         if (angle== 90f){ // RIGHT
             originX = x+width/2;
             originY = y;
             rearX =  x-width;
             rearY = y;
-            setSpeedInKM(30f, 0f);
+            setSpeedInKM(SimConfig.AVERAGE_VEHICLE_SPEED, 0f);
         }
         if (angle== -90f){ // LEFT
             originX = x+width/2;
             originY = y;
             rearX =  x+2*width;
             rearY = y;
-            setSpeedInKM(-30f, 0f);
+            setSpeedInKM(-SimConfig.AVERAGE_VEHICLE_SPEED, 0f);
         }
+    }
+    public void setLightPosition(float lightPosition){
+        this.lightPosition = lightPosition;
     }
 }
